@@ -23,68 +23,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+      href="product_page_styles.css"
+      rel="stylesheet"
+    />
+    <script
+      type="text/javascript"
+      src="config.js"
+    ></script>
+    <script
+      src="script.js"
+      defer
+    ></script>
   <title>Select Products</title>
-  <style>
-    .product-container {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 15px;
-    }
-
-    .product-item {
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      padding: 10px;
-      text-align: center;
-      box-sizing: border-box;
-    }
-
-    .product-item img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 5px;
-    }
-
-    .product-item .details {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      margin: 10px 0;
-    }
-
-    .product-item .details > * {
-      margin: 0 5px;
-    }
-
-    .product-item select {
-      margin-top: 5px;
-    }
-
-    .product-item .actions {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 10px;
-    }
-
-    .product-item button {
-      flex: 1;
-      margin: 0 5px;
-      padding: 8px;
-      background-color: green;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    .product-item button.more {
-      background-color: blue;
-    }
-
-    .product-item button:hover {
-      opacity: 0.9;
-    }
-  </style>
 </head>
 <body>
   <form action="db2.php" method="POST">
@@ -106,7 +57,7 @@
           echo '</div>';
           echo '<div class="actions">';
           echo '<button type="button" class="add-to-cart">Add to Cart</button>';
-          echo '<button type="button" class="more">More</button>';
+          echo '<button type="button" class="more" data-name="' . htmlspecialchars($row['name']) . '" data-description="' . htmlspecialchars($row['description']) . '">More</button>';
           echo '</div>';
           echo '</div>';
         }
@@ -118,6 +69,13 @@
     <br>
     <input type="submit" value="Submit">
   </form>
+  <div id="product-modal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2 id="modal-title"></h2>
+      <p id="modal-description"></p>
+    </div>
+  </div>
 </body>
 </html>
 
