@@ -28,10 +28,6 @@
       rel="stylesheet"
     />
     <script
-      type="text/javascript"
-      src="config.js"
-    ></script>
-    <script
       src="script.js"
       defer
     ></script>
@@ -49,14 +45,14 @@
           echo '<div class="details">';
           echo '<strong>' . htmlspecialchars($row['name']) . '</strong><br>';
           echo '<span>$' . htmlspecialchars($row['price']) . '</span><br>'; 
-          echo '<select name="quantity">';
-          for ($i = 1; $i <= 5; $i++) {
+          echo '<select class="quantity-selector" name="quantity">';
+          for ($i = 0; $i <= 5; $i++) {
             echo '<option value="' . $i . '">' . $i . '</option>';
           }
           echo '</select>';
           echo '</div>';
           echo '<div class="actions">';
-          echo '<button type="button" class="add-to-cart">Add to Cart</button>';
+          echo '<button type="button" class="add-to-cart" data-name="' . htmlspecialchars($row['name']) . '">Add To Cart</button>';
           echo '<button type="button" class="more" data-name="' . htmlspecialchars($row['name']) . '" data-description="' . htmlspecialchars($row['description']) . '">More</button>';
           echo '</div>';
           echo '</div>';
