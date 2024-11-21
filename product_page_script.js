@@ -98,6 +98,8 @@ const updateCartCount = () => {
     : 0;
 
   cartCountNumber.textContent = totalItems;
+
+  console.log("testing");
 };
 
 window.onload = () => {

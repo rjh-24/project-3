@@ -28,7 +28,7 @@
       rel="stylesheet"
     />
     <script
-      src="script.js"
+      src="product_page_script.js"
       defer
     ></script>
   <title>Products Page</title>
@@ -41,7 +41,7 @@
       <ul>
         <li>
           <a
-            class="html-link"
+            class="html-link disabled-link"
             href="http://localhost:8080/products_page.php"
           >
             <img width="30" height="30" src="https://img.icons8.com/ios/50/small-business.png" alt="small-business"/>
@@ -50,7 +50,7 @@
         <li>
           <a
             class="html-link"
-            href="https://rjh-24.github.io/cs-120-project-1/about_us.html"
+            href="http://localhost:8080/cart_page.php"
           >
             <div class="cart-container">
               <img width="30" height="30" class="cart-icon" src="https://img.icons8.com/ios-glyphs/30/shopping-cart--v1.png" alt="shopping-cart--v1"/ >
