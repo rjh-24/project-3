@@ -31,11 +31,14 @@
       src="script.js"
       defer
     ></script>
-  <title>Select Products</title>
+  <title>Products Page</title>
 </head>
 <body>
-
-    <h2>Select Products:</h2>
+    <div class="page-title-container">
+      <h1>Art Of Eight Gear</h1>
+      <h3>Explore our Muay Thai Equipment</h3>
+      <h4>From gloves to shin guards, find everything you need to train.</h4>
+    </div>
     <div class="product-container">
     <?php
       if ($result->num_rows > 0) {
