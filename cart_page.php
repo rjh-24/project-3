@@ -89,6 +89,15 @@
             $stmt->execute();
             $result = $stmt->get_result();
 
+            echo '<table border="1">
+            <tr>
+              <th>Product</th>
+              <th>Quantity</th>
+              <th>Price</th>
+              <th>ItemTotal</th>
+              <th></th>
+            </tr>';
+
             // Loop through the result and calculate the total cost
             while ($row = $result->fetch_assoc()) {
               $productName = $row['name'];
@@ -96,8 +105,19 @@
               $quantity = $cartData[$productName];
               $totalCost += $price * $quantity;
 
-              echo "Product: " . $row['name'] . " | Price: " . $row['price'] . " | Quantity: " . $quantity . " | Total of " . $row['price'] . " * " . $quantity . " = $" . number_format($row['price'] * $quantity, 2) . "<br>";
+              echo "<tr class='item-row'>
+              <td>{$row['name']}</td>
+              <td>{$quantity}</td>
+              <td>\${$row['price']}</td>
+              <td>\$" . number_format($price * $quantity, 2) . "</td>
+              <td>
+                  <input type='hidden' name='product' value='{$productName}'>
+                  <button type='button' class='remove-item-button' name='remove' value='1'>Remove item</button>
+              </td>
+            </tr>";
             }
+
+            echo '</table>';
 
             $stmt->close();
           } else {

@@ -34,6 +34,25 @@ const updateCartCount = () => {
   cartCountNumber.textContent = totalItems;
 };
 
+document.querySelectorAll(".remove-item-button").forEach((button) => {
+  button.addEventListener("click", () => {
+    let cart = getCookie("currentCart");
+    cart = cart ? JSON.parse(cart) : {};
+
+    const itemRow = button.closest(".item-row");
+    const itemText = itemRow.children[0].innerText;
+
+    delete cart[itemText];
+
+    // immediately delete cookie via setting expiration date to past date if there are no items in cart
+    // otherwise update cart and add 7 days to expiration date
+    Object.keys(cart).length === 0
+      ? setCookie("currentCart", "", -1)
+      : setCookie("currentCart", JSON.stringify(cart), 7);
+    window.location.reload();
+  });
+});
+
 window.onload = () => {
   updateCartCount();
 };
