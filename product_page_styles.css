@@ -1,6 +1,6 @@
 .product-container {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 15px;
 }
 
@@ -20,17 +20,23 @@
 
 .product-item .details {
   display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   margin: 10px 0;
 }
 
 .product-item .details > * {
   margin: 0 5px;
+  flex: 1;
+  max-height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.product-item select {
-  margin-top: 5px;
+.quantity-container > * {
+  margin: 0 5px;
 }
 
 .product-item .actions {

@@ -49,7 +49,8 @@ document.querySelectorAll(".add-to-cart").forEach((button) => {
     const productItem = button.closest(".product-item");
     const productDetails = productItem.children[1];
     const productName = productDetails.firstChild.textContent;
-    const productQuantity = productDetails.lastChild.value;
+    const productQuantityDetails = productDetails.lastChild;
+    const productQuantity = productQuantityDetails.lastChild.value;
 
     updateCart(productName, productQuantity);
   });

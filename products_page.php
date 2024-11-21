@@ -34,7 +34,7 @@
   <title>Select Products</title>
 </head>
 <body>
-  <form action="db2.php" method="POST">
+
     <h2>Select Products:</h2>
     <div class="product-container">
     <?php
@@ -45,11 +45,14 @@
           echo '<div class="details">';
           echo '<strong>' . htmlspecialchars($row['name']) . '</strong><br>';
           echo '<span>$' . htmlspecialchars($row['price']) . '</span><br>'; 
+          echo '<div class="quantity-container">';
+          echo '<p>Quantity: </p>';
           echo '<select class="quantity-selector" name="quantity">';
-          for ($i = 0; $i <= 5; $i++) {
+          for ($i = 1; $i <= 5; $i++) {
             echo '<option value="' . $i . '">' . $i . '</option>';
           }
           echo '</select>';
+          echo '</div>';
           echo '</div>';
           echo '<div class="actions">';
           echo '<button type="button" class="add-to-cart" data-name="' . htmlspecialchars($row['name']) . '">Add To Cart</button>';
@@ -63,7 +66,6 @@
     ?>
     </div>
     <br>
-    <input type="submit" value="Submit">
   </form>
   <div id="product-modal" class="modal">
     <div class="modal-content">
