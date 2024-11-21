@@ -1,14 +1,74 @@
-.page-title-container {
+/* Navbar container */
+.navbar-container {
+  position: fixed;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--stone-400);
+  height: 100px;
+  inset: 0;
+  z-index: 3;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-container .flex-empty {
+  flex: 1;
+}
+
+.navbar-container h1.flex-middle {
+  flex: 1;
+  text-align: center;
+  margin: 0;
+}
+
+.navbar-container .nav-links-container {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.nav-links-container ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.nav-links-container li {
+  padding: 20px;
+}
+
+.cart-container {
+  text-align: center;
+}
+
+.cart-icon {
+  position: relative;
+  font-size: 2rem;
+  display: inline-block;
+  margin-bottom: 1rem;
+}
+
+.cart-count {
+  position: absolute;
+  top: 20px;
+  right: 85px;
+  background-color: red;
+  color: white;
+  font-size: 0.8rem;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
 
+/* Product container */
 .product-container {
+  margin-top: 100px;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 15px;
+  padding: 20px;
 }
 
 .product-item {
@@ -71,6 +131,7 @@
   opacity: 0.9;
 }
 
+/* More Details Modal */
 .modal {
   display: none;
   position: fixed;

@@ -2,6 +2,7 @@ const modal = document.getElementById("product-modal");
 const modalTitle = document.getElementById("modal-title");
 const modalDescription = document.getElementById("modal-description");
 const closeModal = document.querySelector(".modal .close");
+const cartCountNumber = document.getElementById("cartCount");
 
 const toggleModal = (isOpen, name = "", description = "") => {
   if (isOpen) {
@@ -53,6 +54,7 @@ document.querySelectorAll(".add-to-cart").forEach((button) => {
     const productQuantity = productQuantityDetails.lastChild.value;
 
     updateCart(productName, productQuantity);
+    updateCartCount();
   });
 });
 
@@ -82,4 +84,22 @@ const updateCart = (updatedItem, updatedQuantity) => {
 
   cart[updatedItem] = (cart[updatedItem] || 0) + parseInt(updatedQuantity);
   setCookie("currentCart", JSON.stringify(cart), 30);
+};
+
+const updateCartCount = () => {
+  let cart = getCookie("currentCart");
+
+  // effectively return 0 if the cart cookie does not exist
+  // otherwise perform reduce function to get sum of items in cart cookie
+  const totalItems = cart
+    ? Object.values(JSON.parse(cart)).reduce((accum, currValue) => {
+        return accum + currValue;
+      }, 0)
+    : 0;
+
+  cartCountNumber.textContent = totalItems;
+};
+
+window.onload = () => {
+  updateCartCount();
 };
