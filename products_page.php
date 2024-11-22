@@ -1,23 +1,3 @@
-<?php
-  $config = include 'config.php';
-
-  $server = $config['db_host'];
-  $userid = $config['db_user'];
-  $pw = $config['db_pwd'];
-  $db = $config['db_name'];
-
-  $conn = new mysqli($server, $userid, $pw);
-
-  if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-  }
-
-  $conn->select_db($db);
-
-  $sql = "SELECT * FROM products ORDER BY name ASC";
-  $result = $conn->query($sql);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -72,6 +52,24 @@
   </div>
   <div class="product-container">
   <?php
+    $config = include 'config.php';
+
+    $server = $config['db_host'];
+    $userid = $config['db_user'];
+    $pw = $config['db_pwd'];
+    $db = $config['db_name'];
+  
+    $conn = new mysqli($server, $userid, $pw);
+  
+    if ($conn->connect_error) {
+      die("Connection failed: " . $conn->connect_error);
+    }
+  
+    $conn->select_db($db);
+  
+    $sql = "SELECT * FROM products ORDER BY name ASC";
+    $result = $conn->query($sql);
+
     if ($result->num_rows > 0) {
       while ($row = $result->fetch_assoc()) {
         echo '<div class="product-item">';
