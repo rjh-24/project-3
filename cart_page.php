@@ -111,8 +111,8 @@
               <td>\${$row['price']}</td>
               <td>\$" . number_format($price * $quantity, 2) . "</td>
               <td>
-                  <input type='hidden' name='product' value='{$productName}'>
-                  <button type='button' class='remove-item-button' name='remove' value='1'>Remove item</button>
+                <input type='hidden' name='product' value='{$productName}'>
+                <button type='button' class='remove-item-button' name='remove' value='1'>Remove item</button>
               </td>
             </tr>";
             }

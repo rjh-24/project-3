@@ -28,7 +28,6 @@
       $totalCost = 0;
 
       if (is_array($cartData)) {
-        // Current timestamp
         $dateOrdered = date('Y-m-d H:i:s'); 
         $sqlInsertOrder = "INSERT INTO orders (date_ordered) VALUES ('$dateOrdered')";
 
@@ -63,12 +62,18 @@
           $sqlInsertTotalCost = "UPDATE orders SET total_cost = '$totalCost' WHERE id = $orderId";
           $conn->query($sqlInsertTotalCost);
 
-          echo "Order successfully stored with ID: $orderId";
-          echo "Total Cost: $" . $totalCost;
+          echo "<h2>Thank you for your order!</h2>";
+          echo "<p>Your order has been successfully stored with ID: $orderId.</p>";
+          echo "<p><strong>Total Cost:</strong> $" . $totalCost . "</p>";
+
+          $date = new DateTime(); 
+          $date->modify('+2 days'); 
+          $expectedShipDate = $date->format('Y-m-d');
+
+          echo "<p><strong>Expected Ship Date:</strong> $expectedShipDate</p>";
 
           // Manually expire cookie to delete
           setcookie('currentCart', '', time() - 3600, '/'); 
-          echo "Cart has been cleared.";
           
         } else {
           echo "Error: " . $sqlInsertOrder . "<br>" . $conn->error;
