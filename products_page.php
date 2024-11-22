@@ -41,7 +41,7 @@
         <li>
           <a
             class="html-link"
-            href="http://localhost:8080/cart_page.php"
+            href="http://localhost:8080/orders_page.php"
           >
             <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/receipt.png" alt="receipt"/>
             </a>
