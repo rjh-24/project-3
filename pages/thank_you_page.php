@@ -113,7 +113,12 @@
           echo "<p><strong>Arriving:</strong> $expectedShipDate</p>";
 
           // Manually expire cookie to delete
-          setcookie('currentCart', '', time() - 3600, '/'); 
+          echo "
+            <script>
+                // JavaScript to delete the cookie
+                document.cookie = 'currentCart=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+            </script>
+          ";
           
         } else {
           echo "Error: " . $sqlInsertOrder . "<br>" . $conn->error;
