@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link
-      href="product_page_styles.css"
+      href="style.css"
       rel="stylesheet"
     />
     <script
@@ -131,7 +131,11 @@
       }
      echo "Total Cost: $" . number_format($totalCost, 2);
   ?>
-</body>
+  <div class="button-container">
+    <button type="button" class="checkout-button" id="checkoutBtn">Check Out</button>
+    <button type="button" class="continue-shopping-button" id="continueShopBtn">Continue Shopping</button>
+  </div>
+<body>
 </html>
 
 <?php

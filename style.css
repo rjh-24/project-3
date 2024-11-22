@@ -170,3 +170,28 @@
   color: black;
   text-decoration: none;
 }
+
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.checkout-button,
+.continue-shopping-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.checkout-button {
+  background-color: #28a745;
+  color: white;
+}
+
+.continue-shopping-button {
+  background: #007bff;
+  color: white;
+}

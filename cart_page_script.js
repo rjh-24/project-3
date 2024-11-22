@@ -1,4 +1,5 @@
 const cartCountNumber = document.getElementById("cartCount");
+const continueShopBtn = document.getElementById("continueShopBtn");
 
 // Cookie storage for current cart
 function setCookie(name, value, days) {
@@ -51,6 +52,10 @@ document.querySelectorAll(".remove-item-button").forEach((button) => {
       : setCookie("currentCart", JSON.stringify(cart), 7);
     window.location.reload();
   });
+});
+
+continueShopBtn.addEventListener("click", () => {
+  window.location.href = "products_page.php";
 });
 
 window.onload = () => {
