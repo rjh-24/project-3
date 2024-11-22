@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link
-    href="style.css"
+    href="../style.css"
     rel="stylesheet"
   />
   <title>Thank You Page</title>
@@ -18,7 +18,7 @@
         <li>
           <a
             class="html-link"
-            href="http://localhost:8080/products_page.php"
+            href="http://localhost:8080/pages/products_page.php"
           >
             <img width="30" height="30" src="https://img.icons8.com/ios/50/small-business.png" alt="small-business"/>
           </a>
@@ -26,7 +26,7 @@
         <li>
           <a
             class="html-link"
-            href="http://localhost:8080/cart_page.php"
+            href="http://localhost:8080/pages/cart_page.php"
           >
             <div class="cart-container">
               <img width="30" height="30" class="cart-icon" src="https://img.icons8.com/ios-glyphs/30/shopping-cart--v1.png" alt="shopping-cart--v1"/ >
@@ -37,7 +37,7 @@
         <li>
           <a
             class="html-link"
-            href="http://localhost:8080/orders_page.php"
+            href="http://localhost:8080/pages/orders_page.php"
           >
             <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/receipt.png" alt="receipt"/>
             </a>
@@ -47,7 +47,7 @@
   </div>
   <div class="main-page-container">
   <?php
-    $config = include 'config.php';
+    $config = include '../config.php';
     $server = $config['db_host'];
     $userid = $config['db_user'];
     $pw = $config['db_pwd'];

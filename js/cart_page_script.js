@@ -56,11 +56,11 @@ document.querySelectorAll(".remove-item-button").forEach((button) => {
 });
 
 checkoutBtn.addEventListener("click", () => {
-  window.location.href = "thank_you_page.php";
+  window.location.href = "../pages/thank_you_page.php";
 });
 
 continueShopBtn.addEventListener("click", () => {
-  window.location.href = "products_page.php";
+  window.location.href = "../pages/products_page.php";
 });
 
 window.onload = () => {

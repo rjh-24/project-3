@@ -54,7 +54,7 @@ document.querySelectorAll(".add-to-cart").forEach((button) => {
     const productQuantity = productQuantityDetails.lastChild.value;
 
     updateCart(productName, productQuantity);
-    window.location.href = "cart_page.php";
+    window.location.href = "../pages/cart_page.php";
   });
 });
 
