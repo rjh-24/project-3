@@ -25,6 +25,7 @@
 
     if ($currentCart) {
       $cartData = json_decode($currentCart, true); 
+      $totalCost = 0;
 
       if (is_array($cartData)) {
         // Current timestamp
@@ -36,7 +37,7 @@
 
           foreach ($cartData as $productName => $quantity) {
             // Fetch the product ID based on product name
-            $sqlFetchProduct = "SELECT id FROM products WHERE name = ?";
+            $sqlFetchProduct = "SELECT id, price FROM products WHERE name = ?";
             $stmt = $conn->prepare($sqlFetchProduct);
             $stmt->bind_param("s", $productName);
             $stmt->execute();
@@ -45,6 +46,8 @@
             if ($result->num_rows > 0) {
               $product = $result->fetch_assoc();
               $productId = $product['id'];
+              $productPrice = $product['price'];
+              $totalCost += $productPrice * $quantity;
 
               $sqlInsertItem = "INSERT INTO orderItems (order_id, product_id, quantity) VALUES (?, ?, ?)";
               $stmtInsertItem = $conn->prepare($sqlInsertItem);
@@ -55,7 +58,13 @@
             }
           }
 
+          $totalCost = number_format($totalCost, 2);
+
+          $sqlInsertTotalCost = "UPDATE orders SET total_cost = '$totalCost' WHERE id = $orderId";
+          $conn->query($sqlInsertTotalCost);
+
           echo "Order successfully stored with ID: $orderId";
+          echo "Total Cost: $" . $totalCost;
 
           // Manually expire cookie to delete
           setcookie('currentCart', '', time() - 3600, '/'); 
