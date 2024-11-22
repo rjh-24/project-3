@@ -3,9 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="style.css"
+    rel="stylesheet"
+  />
   <title>Thank You Page</title>
 </head>
 <body>
+<div class="navbar-container">
+    <div class="flex-empty"></div>
+    <h1 class="flex-middle">Art Of Eight Gear</h1>
+    <div class="nav-links-container flex-right">
+      <ul>
+        <li>
+          <a
+            class="html-link"
+            href="http://localhost:8080/products_page.php"
+          >
+            <img width="30" height="30" src="https://img.icons8.com/ios/50/small-business.png" alt="small-business"/>
+          </a>
+        </li>
+        <li>
+          <a
+            class="html-link"
+            href="http://localhost:8080/cart_page.php"
+          >
+            <div class="cart-container">
+              <img width="30" height="30" class="cart-icon" src="https://img.icons8.com/ios-glyphs/30/shopping-cart--v1.png" alt="shopping-cart--v1"/ >
+              <div class="cart-count" id="cartCount">0</div>
+            </div>
+          </a>
+        </li>
+        <li>
+          <a
+            class="html-link"
+            href="http://localhost:8080/orders_page.php"
+          >
+            <img width="30" height="30" src="https://img.icons8.com/ios-glyphs/30/receipt.png" alt="receipt"/>
+            </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="main-page-container">
   <?php
     $config = include 'config.php';
     $server = $config['db_host'];
@@ -63,14 +103,14 @@
           $conn->query($sqlInsertTotalCost);
 
           echo "<h2>Thank you for your order!</h2>";
-          echo "<p>Your order has been successfully stored with ID: $orderId.</p>";
+          echo "<p>Order #: $orderId.</p>";
           echo "<p><strong>Total Cost:</strong> $" . $totalCost . "</p>";
 
           $date = new DateTime(); 
           $date->modify('+2 days'); 
           $expectedShipDate = $date->format('Y-m-d');
 
-          echo "<p><strong>Expected Ship Date:</strong> $expectedShipDate</p>";
+          echo "<p><strong>Arriving:</strong> $expectedShipDate</p>";
 
           // Manually expire cookie to delete
           setcookie('currentCart', '', time() - 3600, '/'); 
@@ -84,7 +124,8 @@
     } else {
       echo "No cart data found.";
     }
-  ?>  
+  ?> 
+  </div> 
 </body>
 </html>
 

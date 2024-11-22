@@ -66,13 +66,17 @@
   pointer-events: none;
 }
 
+/* Main page container */
+.main-page-container {
+  margin-top: 100px;
+  padding: 20px;
+}
+
 /* Product container */
 .product-container {
-  margin-top: 100px;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
   gap: 15px;
-  padding: 20px;
 }
 
 .product-item {
