@@ -83,7 +83,7 @@
 
           // Prepare the statement and bind
           if ($stmt = $conn->prepare($sql)) {
-            $types = str_repeat('s', count($productNames)); // 's' for string
+            $types = str_repeat('s', count($productNames)); 
             $stmt->bind_param($types, ...$productNames);
 
             $stmt->execute();
