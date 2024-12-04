@@ -20,7 +20,7 @@ const toggleModal = (isOpen, name = "", description = "") => {
   modal.style.alignItems = "";
 };
 
-document.querySelectorAll(".more").forEach((button) => {
+document.querySelectorAll(".more-btn").forEach((button) => {
   button.addEventListener("click", () => {
     const name = button.getAttribute("data-name");
     const description = button.getAttribute("data-description");
@@ -45,7 +45,7 @@ window.addEventListener("keydown", (event) => {
   }
 });
 
-document.querySelectorAll(".add-to-cart").forEach((button) => {
+document.querySelectorAll(".add-to-cart-btn").forEach((button) => {
   button.addEventListener("click", () => {
     const productItem = button.closest(".product-item");
     const productDetails = productItem.children[1];
