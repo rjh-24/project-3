@@ -88,14 +88,15 @@
             $stmt->execute();
             $result = $stmt->get_result();
 
-            echo '<table border="1">
-            <tr>
-              <th>Product</th>
-              <th>Quantity</th>
-              <th>Price</th>
-              <th>ItemTotal</th>
-              <th></th>
-            </tr>';
+            echo "<div class='table-container'>
+                    <table border='1'>
+                      <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Item Total</th>
+                        <th></th>
+                      </tr>";
 
             // Loop through the result and calculate the total cost
             while ($row = $result->fetch_assoc()) {
@@ -116,7 +117,7 @@
             </tr>";
             }
 
-            echo '</table>';
+            echo '</table></div>';
 
             $stmt->close();
           } else {
@@ -126,13 +127,15 @@
           echo "Failed to decode cart JSON data.";
         }
       } else {
-        echo "No cart data found.";
+        echo "<div style='display: flex; justify-content: center;'>Your cart is empty.</div>";
       }
-     echo "Total Cost: $" . number_format($totalCost, 2);
+      echo "<div class='total-cost-container'>Total Cost: $" . number_format($totalCost, 2) . "</div>";    
   ?>
   <div class="button-container">
-    <button type="button" class="checkout-button" id="checkoutBtn">Check Out</button>
-    <button type="button" class="continue-shopping-button" id="continueShopBtn">Continue Shopping</button>
+    <div id="button-wrapper">
+      <button type="button" class="checkout-button" id="checkoutBtn">Check Out</button>
+      <button type="button" class="continue-shopping-button" id="continueShopBtn">Continue Shopping</button>
+    </div>
   </div>
 <body>
 </html>

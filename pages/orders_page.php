@@ -50,68 +50,71 @@
     </div>
   </div>
   <div class="main-page-container">
-  <?php
-    $config = include '../config.php';
-    $server = $config['db_host'];
-    $userid = $config['db_user'];
-    $pw = $config['db_pwd'];
-    $db = $config['db_name'];
+    <div id="orders-grid">
+    <?php
+      $config = include '../config.php';
+      $server = $config['db_host'];
+      $userid = $config['db_user'];
+      $pw = $config['db_pwd'];
+      $db = $config['db_name'];
 
-    $conn = new mysqli($server, $userid, $pw);
+      $conn = new mysqli($server, $userid, $pw);
 
-    if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-    }
+      if ($conn->connect_error) {
+        die("Connection failed: " . $conn->connect_error);
+      }
 
-    $conn->select_db($db);
+      $conn->select_db($db);
 
-    $sql = "
-    SELECT o.id AS order_id, o.date_ordered, o.total_cost, 
-           oi.quantity, p.name AS product_name, p.price AS product_price
-    FROM orders o
-    JOIN orderItems oi ON o.id = oi.order_id
-    JOIN products p ON oi.product_id = p.id
-    ORDER BY o.date_ordered DESC
-    ";
+      $sql = "
+      SELECT o.id AS order_id, o.date_ordered, o.total_cost, 
+            oi.quantity, p.name AS product_name, p.price AS product_price
+      FROM orders o
+      JOIN orderItems oi ON o.id = oi.order_id
+      JOIN products p ON oi.product_id = p.id
+      ORDER BY o.date_ordered DESC
+      ";
 
-    $result = $conn->query($sql);
+      $result = $conn->query($sql);
 
-    if ($result->num_rows > 0) {
-      $currentOrderId = null;
-      while ($row = $result->fetch_assoc()) {
-        if ($currentOrderId != $row['order_id']) {
-          // close table for previous order
-          if ($currentOrderId !== null) {
-            echo "</table><br>";
+      if ($result->num_rows > 0) {
+        $currentOrderId = null;
+        while ($row = $result->fetch_assoc()) {
+          if ($currentOrderId != $row['order_id']) {
+            // Close previous order card
+            if ($currentOrderId !== null) {
+              echo "</table></div>";
+            }
+
+            $currentOrderId = $row['order_id'];
+            $dateOrdered = $row['date_ordered'];
+            $totalCost = number_format($row['total_cost'], 2);
+
+            echo "<div class='order-card'>";
+            echo "<h3>Order ID: $currentOrderId</h3>";
+            echo "<p><strong>Date Ordered:</strong> $dateOrdered</p>";
+            echo "<p><strong>Total Cost:</strong> $$totalCost</p>";
+            echo "<table border='1'>";
+            echo "<tr><th>Item</th><th>Quantity</th><th>Cost</th></tr>";
           }
 
-          $currentOrderId = $row['order_id'];
-          $dateOrdered = $row['date_ordered'];
-          $totalCost = number_format($row['total_cost'], 2);
+          $productName = $row['product_name'];
+          $quantity = $row['quantity'];
+          $itemCost = number_format($row['product_price'] * $quantity, 2);
 
-          echo "<h3>Order ID: $currentOrderId</h3>";
-          echo "<p><strong>Date Ordered:</strong> $dateOrdered</p>";
-          echo "<p><strong>Total Cost:</strong> $$totalCost</p>";
-          echo "<table border='1'>";
-          echo "<tr><th>Item</th><th>Quantity</th><th>Cost</th></tr>";
+          echo "<tr>
+                  <td>$productName</td>
+                  <td>$quantity</td>
+                  <td>$$itemCost</td>
+                </tr>";
         }
-
-        $productName = $row['product_name'];
-        $quantity = $row['quantity'];
-        $itemCost = number_format($row['product_price'] * $quantity, 2);
-
-        echo "<tr>
-                <td>$productName</td>
-                <td>$quantity</td>
-                <td>$$itemCost</td>
-              </tr>";
+        echo "</table></div>"; // Close the last order card
+      } else {
+        echo "<p>No orders found.</p>";
       }
-      echo "</table>";
-    } else {
-      echo "No orders found.";
-    }
-  ?>
+    ?>
   </div>
+</div>
 </body>
 </html>
 

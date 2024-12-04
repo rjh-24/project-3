@@ -86,8 +86,8 @@
         echo '</div>';
         echo '</div>';
         echo '<div class="actions">';
-        echo '<button type="button" class="add-to-cart" data-name="' . htmlspecialchars($row['name']) . '">Add To Cart</button>';
-        echo '<button type="button" class="more" data-name="' . htmlspecialchars($row['name']) . '" data-description="' . htmlspecialchars($row['description']) . '">More</button>';
+        echo '<button type="button" class="add-to-cart-btn" data-name="' . htmlspecialchars($row['name']) . '">Add To Cart</button>';
+        echo '<button type="button" class="more-btn" data-name="' . htmlspecialchars($row['name']) . '" data-description="' . htmlspecialchars($row['description']) . '">More</button>';
         echo '</div>';
         echo '</div>';
       }
